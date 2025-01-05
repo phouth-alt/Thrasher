@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>All Products - Redstore</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+        <!--added a cdn link by searching font awesome4 cdn and getting this link from https://www.bootstrapcdn.com/fontawesome/ this url*/-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+        <!--<div class ="header">-->
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html"><img src="Image/logoforweb-removebg-preview.png" width="125px"></a>
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="index.html">Home</a></li>
+                         <li><a href="products.html">Products</a></li>
+                         <li><a href="About Us.html">About</a></li>
+                         <li><a href="contact.html">Contact</a></li>
+                         <li><a href="account.html">Account</a></li>
+
+                    </ul>
+                </nav>
+                <a href="cart.html"><img src="Image/shop-removebg-preview.png" width="30px" height="30px"></a>
+                <img src="Image/menu.png" class="menu-icon" onClick="menutoggle()" >
+            </div>
+
+        </div>
+    <!--</div>-->
+        <!----------------------------------about us------------------------------------->
+      
+            <!-- Cart Section -->
+            <div class="cart-page">
+                <div class="container">
+                    <h2 class="title">Your Cart</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-items">
+                            <!-- Cart items will be dynamically inserted here -->
+                        </tbody>
+                    </table>
+        
+                    <div class="total-price">
+                        <table>
+                            <tr>
+                                <td>Total</td>
+                                <td id="cart-total">$0.00</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+            <script>
+                // Sample data for demonstration (replace with dynamic data from your backend or product pages)
+                const products = [
+                    
+                    { id: 2, name: 'Product Shoes', price: 135.0, quantity: 1 },
+                ];
+        
+                const cartItemsContainer = document.getElementById('cart-items');
+                const cartTotal = document.getElementById('cart-total');
+        
+                function renderCart() {
+                    cartItemsContainer.innerHTML = '';
+                    let total = 0;
+        
+                    products.forEach((product, index) => {
+                        const subtotal = product.price * product.quantity;
+                        total += subtotal;
+        
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${product.name}</td>
+                            <td>
+                                <input type="number" value="${product.quantity}" min="1" data-index="${index}" class="quantity-input">
+                                <button data-index="${index}" class="remove-btn">Remove</button>
+                            </td>
+                            <td>$${subtotal.toFixed(2)}</td>
+                        `;
+        
+                        cartItemsContainer.appendChild(row);
+                    });
+        
+                    cartTotal.textContent = `$${total.toFixed(2)}`;
+                }
+        
+                cartItemsContainer.addEventListener('input', (event) => {
+                    if (event.target.classList.contains('quantity-input')) {
+                        const index = event.target.getAttribute('data-index');
+                        const newQuantity = parseInt(event.target.value);
+        
+                        if (!isNaN(newQuantity) && newQuantity > 0) {
+                            products[index].quantity = newQuantity;
+                            renderCart();
+                        }
+                    }
+                });
+        
+                cartItemsContainer.addEventListener('click', (event) => {
+                    if (event.target.classList.contains('remove-btn')) {
+                        const index = event.target.getAttribute('data-index');
+                        products.splice(index, 1);
+                        renderCart();
+                    }
+                });
+        
+                renderCart();
+            </script>
+        </body>
+        
+        </html>
+        
+
+
+
+       
+
+        <!----------------------------------footer------------------------------------->
+        <div class ="footer">
+        <div class="container">
+
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and ios mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="Image/play-store.png" alt="">
+                        <img src="Image/app-store.png" alt="">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <a href="index.html"> <img src="Image/logoforweb-removebg-preview.png"></a>
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                   <ul>
+                       <li>Coupons</li>
+                       <li>Blog Post</li>
+                       <li>Return Policy</li>
+                       <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                   <ul>
+                       <li>Facebook</li>
+                       <li>Twitter</li>
+                       <li>Instagram</li>
+                       <li>Youtube</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <hr><!--horizontal line-->
+            <p class="copyright">Copyright 2024 - Team Threasher</p>
+
+        </div>
+    </div>
+
+
+        <!-----------------------------------js for toggle menu----------------------------------------------->
+        <script>
+            var menuItems=document.getElementById("MenuItems");
+
+            MenuItems.style.maxHeight="0px";
+            function menutoggle(){
+                if(MenuItems.style.maxHeight == "0px"){
+                    MenuItems.style.maxHeight="200px";
+                }
+                else{
+                    MenuItems.style.maxHeight="0px";
+                }
+            }
+        </script>
+
+        <!-----------------------js for product gallery-------------------->
+
+        <script>
+            var productImg=document.getElementById("productImg");
+            var smallImg=document.getElementsByClassName("small-img");
+
+            smallImg[0].onclick=function(){
+                productImg.src=smallImg[0].src;
+            }
+             smallImg[1].onclick=function(){
+                productImg.src=smallImg[1].src;
+            }
+              smallImg[2].onclick=function(){
+                productImg.src=smallImg[2].src;
+            }
+               smallImg[3].onclick=function(){
+                productImg.src=smallImg[3].src;
+            }
+
+
+        </script>
+    </body>
+</html>

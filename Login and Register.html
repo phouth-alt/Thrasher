@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register - Redstore</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="Image/logoforweb-removebg-preview.png" width="125px" alt="Logo"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="Login and Register.html">Account</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="Image/shop-removebg-preview.png" width="30px" height="30px" alt="Cart"></a>
+            <img src="Image/menu.png" class="menu-icon" onClick="menutoggle()">
+        </div>
+    </div>
+
+    <!-- Login & Register Form Section -->
+    <div class="auth-section">
+        <div class="form-container">
+            <!-- Toggle Buttons -->
+            <div class="toggle-btns">
+                <button class="toggle-btn active" onclick="toggleForm('login')">Login</button>
+                <button class="toggle-btn" onclick="toggleForm('register')">Register</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form active">
+                <h3>Login</h3>
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button class="btn" type="submit">Login</button>
+                <div class="footer-links">
+                    <a href="#">Forgot Password?</a>
+                    <a href="account.html" style="float:right;">Create an Account</a>
+                </div>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm" class="auth-form">
+                <h3>Register</h3>
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" placeholder="Enter a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <button class="btn" type="submit">Register</button>
+                <div class="footer-links">
+                    <a href="#">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class ="footer">
+        <div class="container">
+
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and ios mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="Image/play-store.png" alt="">
+                        <img src="Image/app-store.png" alt="">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <a href="index.html"><img src="Image/logoforweb-removebg-preview.png" ></a>
+                    <p>Our purpose of selling streetwear shoes is to provide trendy, high-quality footwear that resonates with the urban culture and appeals to fashion-forward consumers.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                   <ul>
+                       <li>Coupons</li>
+                       <li>Blog Post</li>
+                       <li>Return Policy</li>
+                       <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                   <ul>
+                       <li>Facebook</li>
+                       <li>Twitter</li>
+                       <li>Instagram</li>
+                       <li>Youtube</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <hr><!--horizontal line-->
+            <p class="copyright">Copyright 2024 - Team Thrasher</p>
+
+        </div>
+
+    <script>
+        function menutoggle() {
+            var menuItems = document.getElementById("MenuItems");
+            menuItems.style.maxHeight = menuItems.style.maxHeight === "0px" ? "200px" : "0px";
+        }
+
+        function toggleForm(formType) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const toggleBtns = document.querySelectorAll('.toggle-btn');
+
+            if (formType === 'login') {
+                loginForm.classList.add('active');
+                registerForm.classList.remove('active');
+                toggleBtns[0].classList.add('active');
+                toggleBtns[1].classList.remove('active');
+            } else {
+                loginForm.classList.remove('active');
+                registerForm.classList.add('active');
+                toggleBtns[1].classList.add('active');
+                toggleBtns[0].classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>

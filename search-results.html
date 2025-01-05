@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="Image/logoforweb-removebg-preview.png" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="Image/shop-removebg-preview.png" width="30px" height="30px"></a>
+            <img src="Image/menu.png" class="menu-icon" onClick="menutoggle()">
+        </div>
+
+        <h1>Search Results</h1>
+        <div id="results" class="small-container">
+            <div class="row" id="search-results-row">
+                <!-- Search results will populate here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Extract the search query from the URL
+        const params = new URLSearchParams(window.location.search);
+        const query = params.get('query');
+
+        // Example: Simulating search results
+        const products = [
+            { name: "Nike Air Force 1'07 SE", price: "$120.00", image: "Image/AirForce/WMNS+AIR+FORCE+1+'07+SE%20120.png", link: "item2.html" },
+            { name: "Nike Air Force 1 Shadow", price: "$135.00", image: "Image/AirForce/Nike%20Air%20Force%201%20Shadow/W+AF1+SHADOW%20135.png", link: "item3.html" },
+            { name: "Nike Air Force 1'07 LX", price: "$135.00", image: "Image/AirForce/Nike%20Air%20Force%201'07%20LV8/AIR+FORCE+1+'07+LV8.png", link: "item5.html" },
+            { name: "Air Force 1 Low x Stash Soft Grey and Harbour Blue", price: "$135.00", image: "Image/AirForce/Soft%20Grey%20and%20Harbour%20Blue/air-force-1-low-x-stash-soft-grey-and-harbour-blue-hf5516-001-release-date.jpg", link: "item6.html" },
+            { name: "Nike Air Force 1'07 Pro Max", price: "$135.00", image: "Image/AirForce/Nike%20Air%20Force%201'07/AIR+FORCE+1+'07.png", link: "item1.html" },
+
+
+        // for dunklow
+             { name: "Nike Dunk Low", price: "$249.00", image: "Image/DunkLow/Nike%20Dunk%20Low/W+NIKE+DUNK+LOW.jpg", link: "Nike Dunk Low.html" },
+             { name: "Nike Dunk Low JP QS", price: "$120.00", image: "Image/DunkLow/Nike%20Dunk%20Low%20Jp/dunk-low-midnight-navy-and-varsity-red-ib2051-400-–-data-del-lancio.jpg", link: "Nike Dunk Low JP QS.html" },
+             { name: "Nike Dunk Low Next Nature", price: "$120.00", image: "Image/DunkLow/Nike%20Dunk%20Low%20Next%20Nature/W+NIKE+DUNK+LOW%20(2).png", link: "Nike Dunk Low Next Nature.html" },
+             { name: "Nike Dunk Low Retro", price: "$86.97", image: "Image/DunkLow/Nike%20Dunk%20Low%20Retro/NIKE+DUNK+LOW+RETRO.png", link: "Nike Dunk Low Retro.html" },
+             { name: "Nike Dunk Low Retro SE", price: "$120.00", image: "Image/DunkLow/Nike%20Dunk%20Low%20Retro%20SE/NIKE+DUNK+LOW+RETRO+SE.png", link: "Nike Dunk Low Retro SE.html" },
+             { name: "Nike Dunk Low Twist", price: "$120.00", image: "Image/DunkLow/Nike%20Dunk%20Low%20Twist/W+NIKE+DUNK+LOW++TWIST.png", link: "Nike Dunk Low Twist.html" },
+             { name: "Nike Dunk Low 1", price: "$249.00", image: "Image/DunkLow/Nike%20Dunk%20Low%201/W+NIKE+DUNK+LOW%20(2).png", link: "Nike Dunk Low 1.html" },
+             { name: "Nike Dunk Low 2", price: "$120.00", image: "Image/DunkLow/Nike%20Dunk%20Low%202/NIKE+DUNK+LOW.png", link: "Nike Dunk Low 2.html" },
+             { name: "Nike Dunk Low 3", price: "$135.00", image: "Image/DunkLow/Nike%20Dunk%20Low%203/W+NIKE+DUNK+LOW%20(2).png", link: "Nike Dunk Low 3.html" },
+             { name: "Nike SB Dunk Low Pro", price: "$249.00", image: "Image/DunkLow/Nike%20SB%20Dunk%20Low%20Pro/NIKE+SB+DUNK+LOW+PRO.png", link: "Nike SB Dunk Low Pro.html" },
+             { name: "Nike SB Dunk Low Pro Electric", price: "$135.00", image: "Image/DunkLow/Nike%20SB%20Dunk%20Low%20Pro%20Electric/NIKE+SB+DUNK+LOW+PRO.png", link: "Nike SB Dunk Low Pro Electric.html" },
+             { name: "Nike SB Dunk Low Pro Premium", price: "$120.00", image: "Image/DunkLow/Nike%20SB%20Dunk%20Low%20Pro%20Premium/date-de-sortie-de-la-nike%C2%A0sb-dunk-low-«%C2%A0fir-and-fire-red%C2%A0»-fz1287-300.jpg", link: "Nike SB Dunk Low Pro Premium.html" },
+        // For SportShoes
+             { name: "Nike Invincibe 3", price: "$195.00", image: "Image/Sportshoes/Nike%20Invincible%203%20195/NIKE+ZOOMX+INVINCIBLE+RUN+FK+3.jpg", link: "Sportt1.html" },
+             { name: "Nike Juniper Trail 3", price: "$90.00", image: "Image/Sportshoes/Nike%20Juniper%20Trail%203%2090/NIKE+JUNIPER+TRAIL+3.png", link: "Sport2.html" },
+             { name: "Nike Motiva", price: "$130.00", image: "Image/Sportshoes/Nike%20Motiva%20120/NIKE+MOTIVA.png", link: "Sport3.html" },
+             { name: "Nike Pegasus Plus", price: "$189.00", image: "Image/Sportshoes/Nike%20Pegasus%20Plus%20189/PEGASUS+PLUS.png", link: "Sport4.html" },
+             { name: "Nike Pegasus Trail 5 GTX", price: "$170.00", image: "Image/Sportshoes/Nike%20Pegasus%20Trail%205%20GORE-TEX%20170/NIKE+PEGASUS+TRAIL+5+GTX.png", link: "Sport5.html" },
+             { name: "Nike Pegasus Trail 5 GTX", price: "$170.00", image: "Image/Sportshoes/Nike%20Pegasus%20Trail%205%20GTX%20170/NIKE+PEGASUS+TRAIL+5+GTX.jpg", link: "Sport6.html" },
+             { name: "Nike Pegasus Trail 5", price: "$190.00", image: "Image/Sportshoes/Nike%20Pegasus%20Trail%205%20190/NIKE+REACTX+PEGASUS+TRAIL+5.png", link: "Sport7.html" },
+             { name: "Nike Pegasus 41 Premium", price: "$160.00", image: "Image/Sportshoes/Nike%20Pegasus%2041%20PRM%20160/AIR+ZOOM+PEGASUS+41+PRM.png", link: "Sport8.html" },
+             { name: "Nike Pegasus 41", price: "$145.00", image: "Image/Sportshoes/Nike%20Pegasus%2041%20145/AIR+ZOOM+PEGASUS+41.png", link: "Sport9.html" },
+             { name: "Nike StreakFly", price: "$170.00", image: "Image/Sportshoes/Nike%20Streakfly%20170/NIKE+ZOOMX+STREAKFLY.png", link: "Sport10.html" },
+             { name: "Nike Victory 2", price: "$230.00", image: "Image/Sportshoes/Nike%20Victory%202%20230/AIR+ZOOM+VICTORY+2+ALL.png", link: "Sport11.html" },
+             { name: "Nike ZoomX Zegama Trail 2", price: "$189.00", image: "Image/Sportshoes/Nike%20Zegama%20Trail%202%20189/NIKE+ZOOMX+ZEGAMA+TRAIL+2.png", link: "Sport12.html" },
+
+        ];
+
+        // Filter products based on the query
+        const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query.toLowerCase()));
+
+        // Display the results
+        const resultsContainer = document.getElementById('search-results-row');
+        if (filteredProducts.length > 0) {
+            filteredProducts.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'col-4';
+                productDiv.innerHTML = `
+                    <a href="${product.link}">
+                        <img src="${product.image}" alt="${product.name}" />
+                        <h4>${product.name}</h4>
+                    </a>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <p>${product.price}</p>
+                `;
+                resultsContainer.appendChild(productDiv);
+            });
+        } else {
+            resultsContainer.innerHTML = `<p>No products found for "${query}"</p>`;
+        }
+
+        // Toggle menu function
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>
+</body>
+
+</html>
